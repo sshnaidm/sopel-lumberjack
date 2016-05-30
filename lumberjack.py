@@ -11,7 +11,7 @@ import time
 import os
 import json
 import codecs
-import willie
+from sopel import module
 import redis
 import arrow
 
@@ -168,7 +168,7 @@ def log2txt(channel, time, nick, msg):
 # event & command
 ###############################################################################
 
-@willie.module.rule('(.*)')
+@module.rule('(.*)')
 def log(bot, trigger):
     """Log the message to the database.
 
@@ -183,7 +183,7 @@ def log(bot, trigger):
         log2txt(trigger.sender, int(time_), trigger.nick, trigger.bytes)
         #print trigger.sender, int(time_), trigger.nick, trigger.bytes
 
-@willie.module.commands('startlog')
+@module.commands('startlog')
 def startlog(bot, trigger):
     """Toggle the log module on."""
     #. Can only be done in privmsg by an admin
@@ -195,7 +195,7 @@ def startlog(bot, trigger):
         logging = True
         bot.reply('Okay.')
 
-@willie.module.commands('stoplog')
+@module.commands('stoplog')
 def stoplog(bot, trigger):
     """Toggle the log module off."""
     #. Can only be done in privmsg by an admin
