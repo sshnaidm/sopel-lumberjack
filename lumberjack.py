@@ -179,9 +179,9 @@ def log(bot, trigger):
     time_ = time.time()
     #. only log message in the channel not from other IRC users
     if logging and db and trigger.sender.startswith('#'):
-        _log(trigger.sender, int(time_), trigger.nick, trigger.bytes)
-        log2txt(trigger.sender, int(time_), trigger.nick, trigger.bytes)
-        #print trigger.sender, int(time_), trigger.nick, trigger.bytes
+        _log(trigger.sender, int(time_), trigger.nick, trigger.raw)
+        log2txt(trigger.sender, int(time_), trigger.nick, trigger.raw)
+        #print trigger.sender, int(time_), trigger.nick, trigger.raw
 
 @module.commands('startlog')
 def startlog(bot, trigger):
